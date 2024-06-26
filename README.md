@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=blue) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) ![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
 ### Описание проекта 
-Kittygram - сервис для любителей котиков дает возмодность:
+Kittygram - сервис для любителей котиков дает возможность:
 
 - Добавлять, просматривать, редактировать и удалять своих котиков.
 - Добавлять новые достижения и присваивать своим котикам уже существующие.
@@ -19,7 +19,7 @@ ___
 ### Клонируйте репозиторий:
 
 ```
-git clone git@github.com:vglazasmotri/kittygram_final.git
+git clone git@github.com:Artem-Barsukov/kittygram_final.git
 ```
 
 ```
@@ -90,7 +90,7 @@ cd ..
 docker compose -f docker-compose.production.yml up
 ```
 
-#### Соберите статику, скопируйте файлы и выполните команду migrate в Windows лучше через PowerShell:
+#### Соберите статику, скопируйте файлы и выполните команду migrate в Windows:
 
 ```
 docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
@@ -104,7 +104,7 @@ docker compose -f docker-compose.production.yml exec backend cp -r /app/collecte
 docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 ```
 
-#### Проект доступер локально
+#### Проект доступен локально
 
 ```
 http://localhost:9000/
