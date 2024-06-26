@@ -1,12 +1,12 @@
-# Контейнеры и CI/CD для Kittygram
+## Контейнеры и CI/CD для Kittygram
 Запуск проекта Kittygram в контейнерах;
 Настройка автоматического тестирования и деплой проекта на удалённый сервер.
 
-## Стэк
+### Стэк
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=blue) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) ![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
-## Описание проекта 
+### Описание проекта 
 Kittygram - сервис для любителей котиков дает возмодность:
 
 - Добавлять, просматривать, редактировать и удалять своих котиков.
@@ -14,9 +14,9 @@ Kittygram - сервис для любителей котиков дает во�
 - Просматривать чужих котов и их достижения.
 
 ___
-# Установка на локальный компьютер.
+## Установка на локальный компьютер.
 
-## Клонируйте репозиторий:
+### Клонируйте репозиторий:
 
 ```
 git clone git@github.com:vglazasmotri/kittygram_final.git
@@ -26,7 +26,7 @@ git clone git@github.com:vglazasmotri/kittygram_final.git
 cd kittygram
 ```
 
-## Создайте файл .env и заполните его своими данными. Пример в файле .env.example:
+### Создайте файл .env и заполните его своими данными. Пример в файле .env.example:
 
 ```
 # Переменные для базы данных:
@@ -46,27 +46,27 @@ HTTP_PORT=80
 DOCKER_USERNAME=dockerhub_username
 APPLICATION_NAME=kittygram
 ```
-## Имя wsgi для запуска gunicorn
+### Имя wsgi для запуска gunicorn
 В файле /backend/Makefile при необходимости изменить значение:
 
 ```
 WSGI_APPLICATION=kittygram_backend.wsgi
 ```
 
-## Установить пакет Make:
+### Установить пакет Make:
 
-### Если у вас Windows.
+#### Если у вас Windows.
 - Установите chocolatey package manager 
 - Установите make:
 ```
 choco install make
 ```
-### Если у вас Linux то make должна быть установлена по умолчанию. На всякий случай:
+#### Если у вас Linux то make должна быть установлена по умолчанию. На всякий случай:
 ```
 sudo apt install make
 ```
 
-## Создание Docker-образов и загрузка на ваш DockerHub с помощью Makefile:
+### Создание Docker-образов и загрузка на ваш DockerHub с помощью Makefile:
 
 ```
 cd frontend
@@ -83,14 +83,14 @@ cd ../nginx
 make build push
 ```
 
-## Запуск проекта на локальном компьютере:
+### Запуск проекта на локальном компьютере:
 
 ```
 cd ..
 docker compose -f docker-compose.production.yml up
 ```
 
-### Соберите статику, скопируйте файлы и выполните команду migrate в Windows лучше через PowerShell:
+#### Соберите статику, скопируйте файлы и выполните команду migrate в Windows лучше через PowerShell:
 
 ```
 docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
@@ -104,28 +104,28 @@ docker compose -f docker-compose.production.yml exec backend cp -r /app/collecte
 docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 ```
 
-### Проект доступер локально
+#### Проект доступер локально
 
 ```
 http://localhost:9000/
 ```
 
 ___
-# Деплой на сервер.
+## Деплой на сервер.
 
-## Подключитесь к удаленному серверу
+### Подключитесь к удаленному серверу
 
 ```
 ssh -i путь_до_файла_с_SSH_ключом/название_файла_с_SSH_ключом имя_пользователя@ip_адрес_сервера 
 ```
 
-## Создайте на сервере директорию kittygram через терминал:
+### Создайте на сервере директорию kittygram через терминал:
 
 ```
 mkdir kittygram
 ```
 
-## Установка docker compose на сервер:
+### Установка docker compose на сервер:
 
 ```
 sudo apt update
@@ -135,7 +135,7 @@ sudo sh ./get-docker.sh
 sudo apt-get install docker-compose-plugin
 ```
 
-## В директорию kittygram/ скопируйте файлы docker-compose.production.yml и .env:
+### В директорию kittygram/ скопируйте файлы docker-compose.production.yml и .env:
 
 ```
 scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
@@ -145,13 +145,13 @@ scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/ho
 * username — ваше имя пользователя на сервере;
 * server_ip — IP вашего сервера.
 
-## Запустите docker compose в режиме демона:
+### Запустите docker compose в режиме демона:
 
 ```
 sudo docker compose -f docker-compose.production.yml up -d
 ```
 
-## Выполните миграции, соберите статические файлы бэкенда и скопируйте их в /backend_static/static/:
+### Выполните миграции, соберите статические файлы бэкенда и скопируйте их в /backend_static/static/:
 
 ```
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
@@ -165,13 +165,13 @@ sudo docker compose -f docker-compose.production.yml exec backend python manage.
 sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 ```
 
-## На сервере в редакторе nano откройте конфиг Nginx:
+### На сервере в редакторе nano откройте конфиг Nginx:
 
 ```
 sudo nano /etc/nginx/sites-enabled/default
 ```
 
-## Измените настройки location в секции server:
+### Измените настройки location в секции server:
 
 ```
 location / {
@@ -180,7 +180,7 @@ location / {
 }
 ```
 
-## Проверьте работоспособность конфига Nginx:
+### Проверьте работоспособность конфига Nginx:
 
 ```
 sudo nginx -t
@@ -192,14 +192,14 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-## Перезапускаем Nginx
+### Перезапускаем Nginx
 
 ```
 sudo service nginx reload
 ```
 
 ___
-# Настройка CI/CD
+## Настройка CI/CD
 
 ## Файл workflow находится в директории .github/workflows/
 
@@ -207,7 +207,7 @@ ___
 kittygram/.github/workflows/main.yml
 ```
 
-## Для адаптации его на своем сервере добавьте секреты в GitHub Actions:
+### Для адаптации его на своем сервере добавьте секреты в GitHub Actions:
 
 ```
 DOCKER_USERNAME                # имя пользователя в DockerHub
